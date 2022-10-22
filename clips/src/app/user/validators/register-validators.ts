@@ -1,4 +1,4 @@
-import { ValidationErrors, AbstractControl, ValidatorFn } from "@angular/forms";
+import { ValidationErrors, AbstractControl, ValidatorFn } from '@angular/forms';
 
 export class RegisterValidators {
   static match(controlName: string, matchingControlName: string) : ValidatorFn {
@@ -6,13 +6,14 @@ export class RegisterValidators {
       const control = group.get(controlName)
       const matchingControl = group.get(matchingControlName)
 
-      if (!control || !matchingControl) {
-        console.error('Form controls can not be found in the form group')
-
+      if(!control || !matchingControl) {
+        console.error('Form controls can not be found in the form group.')
         return { controlNotFound: false }
       }
 
-      const error = control.value === matchingControl.value ? null : { noMtach: true }
+      const error = control.value === matchingControl.value ? 
+        null :
+        { noMatch: true } 
 
       matchingControl.setErrors(error)
 

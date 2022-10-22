@@ -11,12 +11,10 @@ export class LoginComponent implements OnInit {
     email: '',
     password: ''
   }
-
   showAlert = false
   alertMsg = 'Please wait! We are logging you in.'
   alertColor = 'blue'
   inSubmission = false
-
 
   constructor(private auth: AngularFireAuth) { }
 
@@ -33,17 +31,18 @@ export class LoginComponent implements OnInit {
       await this.auth.signInWithEmailAndPassword(
         this.credentials.email, this.credentials.password
       )
-    } catch (e) {
+    } catch(e) {
       this.inSubmission = false
-      this.alertMsg = 'An unexptected error occured. Please try again!'
+      this.alertMsg = 'An unexpected error occurred. Please try again later.'
       this.alertColor = 'red'
 
       console.log(e)
 
-      return
+      return 
     }
 
-    this.alertMsg = "Success! You are now logged in."
+    this.alertMsg = 'Success! You are now logged in.'
     this.alertColor = 'green'
   }
+
 }

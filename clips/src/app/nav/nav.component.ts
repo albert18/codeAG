@@ -9,13 +9,12 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
-
   constructor(
     public modal: ModalService,
     public auth: AuthService,
     private afAuth: AngularFireAuth
-    ) {
-    }
+  ) { 
+  }
 
   ngOnInit(): void {
   }
@@ -23,12 +22,13 @@ export class NavComponent implements OnInit {
   openModal($event: Event) {
     $event.preventDefault()
 
-    this.modal.toggeleModal('auth')
+    this.modal.toggleModal('auth')
   }
 
   async logout($event: Event) {
     $event.preventDefault()
 
-    this.afAuth.signOut()
+    await this.afAuth.signOut()
   }
+
 }
