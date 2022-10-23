@@ -4,6 +4,8 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/comp
 import { Observable } from 'rxjs';
 import IUser from '../models/user.model';
 import { delay, map } from 'rxjs/operators'
+import { Router } from '@angular/router';
+
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +17,9 @@ export class AuthService {
 
   constructor(
     private auth: AngularFireAuth,
-    private db: AngularFirestore
-  ) { 
+    private db: AngularFirestore,
+    private router: Router
+  ) {
     this.usersCollection = db.collection('users')
     this.isAuthenticated$ = auth.user.pipe(
       map(user => !!user)
@@ -25,7 +28,7 @@ export class AuthService {
       delay(1000)
     )
   }
-  
+
   public async createUser(userData: IUser) {
     if(!userData.password) {
       throw new Error("Password not provided!")
@@ -38,7 +41,7 @@ export class AuthService {
     if(!userCred.user) {
       throw new Error("User can't be found")
     }
-    
+
     await this.usersCollection.doc(userCred.user.uid).set({
       name: userData.name,
       email: userData.email,
@@ -49,5 +52,16 @@ export class AuthService {
     await userCred.user.updateProfile({
       displayName: userData.name
     })
+  }
+
+  public async logout($event?: Event) {
+    if ($event) {
+      $event.preventDefault()
+    }
+
+    await this.auth.signOut()
+
+    await this.router.navigateByUrl('/')
+
   }
 }
