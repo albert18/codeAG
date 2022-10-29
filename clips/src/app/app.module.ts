@@ -13,6 +13,7 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component'
 import { VideoModule } from './video/video.module';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage'
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
     AngularFireAuthModule,
     AngularFirestoreModule,
     VideoModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AngularFireStorageModule
   ],
   providers: [],
   bootstrap: [AppComponent]
