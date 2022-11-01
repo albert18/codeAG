@@ -10,6 +10,11 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class EditComponent implements OnInit, OnDestroy, OnChanges{
   @Input() activeClip: IClip | null = null
+  inSubmission = false
+  showAlert = false
+  alertColor = 'blue'
+  alertMsg = 'Please wait! Updating clip.'
+
 
   clipID = new FormControl('')
   title = new FormControl('', {
@@ -43,4 +48,12 @@ export class EditComponent implements OnInit, OnDestroy, OnChanges{
     // this.clipID.setValue(this.activeClip.docID!)
     this.title.setValue(this.activeClip.title)
   }
+
+  submit() {
+    this.inSubmission = true
+    this.showAlert = true
+    this.alertColor = 'blue'
+    this.alertMsg = 'Please wait! Updating clip.'
+  }
+
 }
