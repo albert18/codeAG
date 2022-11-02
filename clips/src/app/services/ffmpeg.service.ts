@@ -24,5 +24,7 @@ export class FfmpegService {
 
   async getScreenshots(file: File) {
     const data = await fetchFile(file)
+
+    this.ffmpeg.FS('writeFile', file.name, data)
   }
 }
