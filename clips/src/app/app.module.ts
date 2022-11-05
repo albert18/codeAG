@@ -14,7 +14,8 @@ import { AboutComponent } from './about/about.component'
 import { VideoModule } from './video/video.module';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
-import { ClipListComponent } from './clip-list/clip-list.component'
+import { ClipListComponent } from './clip-list/clip-list.component';
+import { FbTimestampPipe } from './pipes/fb-timestamp.pipe'
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ClipListComponent } from './clip-list/clip-list.component'
     HomeComponent,
     AboutComponent,
     NotFoundComponent,
-    ClipListComponent
+    ClipListComponent,
+    FbTimestampPipe
   ],
   imports: [
     BrowserModule,
